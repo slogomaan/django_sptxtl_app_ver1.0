@@ -1,7 +1,6 @@
-Django==4.0
-speech_recognition
-deepmultilingualpunctuation
-pydub
-spacy
-textblob
-googletrans
+Django==3.2.5
+speech_recognition==3.9.8
+deepmultilingualpunctuation==0.1.0
+pydub==0.24.1
+spacy==3.2.1
+googletrans==4.0.0-rc1
