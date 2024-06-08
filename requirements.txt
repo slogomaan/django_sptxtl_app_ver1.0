@@ -1,0 +1,9 @@
+<<<<<<< HEAD
+=======
+Django==3.2.5
+speech_recognition==3.9.8
+deepmultilingualpunctuation==0.1.0
+pydub==0.24.1
+spacy==3.2.1
+googletrans==4.0.0-rc1
+>>>>>>> bf28f181bbe64b7d315638678f6616aa969b1ecc

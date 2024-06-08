@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "rewrites": [
         { "source": "/(.*)", "destination": "/"}
     ],
@@ -6,6 +7,12 @@
         "src": "sptxtl/wsgi.py",
         "use": "@vercel/python",
         "config": { "maxLambdaSize": "15mb", "runtime": "python3.12.3"}
+=======
+    "builds": [{
+        "src": "sptxtl/wsgi.py",
+        "use": "@vercel/python",
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.9"}
+>>>>>>> bf28f181bbe64b7d315638678f6616aa969b1ecc
     }],
     "routes": [
         {
@@ -13,4 +20,8 @@
             "dest": "sptxtl/wsgi.py"
         }
     ]
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> bf28f181bbe64b7d315638678f6616aa969b1ecc

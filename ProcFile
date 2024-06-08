@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 web: gunicorn sptxtl.wsgi:application
+=======
+web: gunicorn sptxtl.wsgi:application
+>>>>>>> bf28f181bbe64b7d315638678f6616aa969b1ecc
