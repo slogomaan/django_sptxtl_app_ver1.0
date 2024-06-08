@@ -1,6 +1,8 @@
+# settings.py
 import os
 from pathlib import Path
 from django.db import models
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'qvki xkuc hcfn wvjv'
 
@@ -18,6 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'transcribe',
 ]
+
 ROOT_URLCONF = 'sptxtl.urls'
 
 TEMPLATES = [
@@ -59,10 +62,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app','.now.sh','127.0.0.1']
+ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1']
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'  # Outgoing Server
 EMAIL_PORT = 587  # SMTP Port
-EMAIL_USE_TLS = True # Enable TLS
+EMAIL_USE_TLS = True  # Enable TLS
 EMAIL_HOST_USER = 'createshashwhaat@gmail.com'  # Your email address
 EMAIL_HOST_PASSWORD = 'qvki xkuc hcfn wvjv'  # Your email password
