@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Audio to Text Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            max-width: 100%;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        select, input[type="file"], textarea, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .error-message {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #333;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Upload Audio File Here</h1>
+    <form id="upload-form" method="POST" action="{% url 'transcribe_audio' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="audio-file">Select Audio File:</label>
+        <input type="file" name="audio_file" id="audio-file">
+        <label for="language-select">Select Language:</label>
+        <select name="language" id="language-select">
+            {% for language in languages %}
+            <option value="{{ language }}">{{ language }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Transcribe</button>
+    </form>
+    {% if transcribed_text %}
+    <div>
+        <label for="transcribed-text">Transcribed Text:</label>
+        <textarea id="transcribed-text" rows="5">{{ transcribed_text }}</textarea>
+    </div>
+    <div>
+        <label for="translated-text">Translated Text:</label>
+        <textarea id="translated-text" rows="5">{{ translated_text }}</textarea>
+        <label for="email-receivers">Share via Email:</label>
+        <input type="text" name="email_receivers" id="email-receivers" placeholder="Enter email addresses separated by commas for multiple recipients.">
+        <button id="send-email-button">Send Email</button>
+        <a href="http://127.0.0.1:8001">Return to Home Page</a>
+    </div>
+    {% endif %}
+    <div class="error-message">{{ error_message }}</div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        document.getElementById('send-email-button').addEventListener('click', function () {
+            var transcribedText = document.getElementById('transcribed-text').value;
+            var translatedText = document.getElementById('translated-text').value;
+            var language = document.getElementById('language-select').value;
+            var emailReceivers = document.getElementById('email-receivers').value;
+            sendEmail(transcribedText, translatedText, language, emailReceivers);
+        });
+
+        document.getElementById('listen-audio-button').addEventListener('click', function () {
+            var translatedText = document.getElementById('translated-text').value;
+            var language = document.getElementById('language-select').value;
+            var audio = new Audio('translated_text.mp3');
+            audio.play();
+        });
+
+        function sendEmail(transcribedText, translatedText, language, emailReceivers) {
+            // Implement AJAX call to server-side email sending function
+            $.ajax({
+                type: 'POST',
+                url: '{% url "send_email" %}',
+                data: {
+                    transcribed_text: transcribedText,
+                    translated_text: translatedText,
+                    language: language,
+                    email_receivers: emailReceivers,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(data) {
+                    alert('Email sent successfully!');
+                },
+                error: function(xhr, status, error) {
+                    alert('Error sending email: ' + error);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
