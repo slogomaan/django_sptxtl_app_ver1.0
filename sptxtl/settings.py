@@ -59,7 +59,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1']
+ALLOWED_HOSTS = ['.vercel.app','.now.sh','127.0.0.1']
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'  # Outgoing Server
 EMAIL_PORT = 587  # SMTP Port
