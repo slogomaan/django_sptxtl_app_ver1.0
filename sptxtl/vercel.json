@@ -1,27 +1,29 @@
 {
-<<<<<<< HEAD
-    "rewrites": [
-        { "source": "/(.*)", "destination": "/"}
-    ],
-    "builds": [{
-        "src": "sptxtl/wsgi.py",
+    "version": 2,
+    "builds": [
+      {
+        "src": "myweb/wsgi.py",
         "use": "@vercel/python",
-        "config": { "maxLambdaSize": "15mb", "runtime": "python3.12.3"}
-=======
-    "builds": [{
-        "src": "sptxtl/wsgi.py",
-        "use": "@vercel/python",
-        "config": { "maxLambdaSize": "15mb", "runtime": "python3.9"}
->>>>>>> bf28f181bbe64b7d315638678f6616aa969b1ecc
-    }],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "sptxtl/wsgi.py"
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+      },
+      {
+        "src": "build_files.sh",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "staticfiles_build"
         }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/static/(.*)",
+        "dest": "/static/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "myweb/wsgi.py"
+      }
     ]
-<<<<<<< HEAD
-}
-=======
-}
->>>>>>> bf28f181bbe64b7d315638678f6616aa969b1ecc
+  }
+  
+  
