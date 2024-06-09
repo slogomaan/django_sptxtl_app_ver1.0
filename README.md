@@ -1,4 +1,4 @@
-In this project, we input an audio file which is converted to a text file by using ‘SpeechRecognition’ python library, which involves splitting the audio file into smaller portions, also called ‘chunks’, making it easier to transcribe them. These transcribed chunks are then concatenated to generate a whole transcribed paragraph.
+In this project, we input an audio file which is converted to a text file by using ‘SpeechRecognition’ python library, which involves splitting the audio file into smaller portions called ‘chunks’, making it easier to transcribe them. These transcribed chunks are then concatenated to generate a whole transcribed paragraph.
 
 This generated paragraph at the moment is unreadable as it has no punctuation, so we use another python library called ‘deepmultilingualpunctuation’ which uses a method called ‘PunctuationModel()’ that is used to add punctuation to the generated paragraph.
 
