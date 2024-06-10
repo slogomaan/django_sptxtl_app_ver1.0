@@ -1,8 +1,5 @@
 {
-<<<<<<< HEAD
     "version": 2,
-=======
->>>>>>> 145e1cb58eab4076ed1e47d46821dc66a4026c46
   "builds": [
     {
       "src": "build_files.sh",
@@ -27,8 +24,4 @@
       "dest": "/static/$1"
     }
   ]
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 145e1cb58eab4076ed1e47d46821dc66a4026c46
