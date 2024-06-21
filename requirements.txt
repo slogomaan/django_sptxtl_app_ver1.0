@@ -1,4 +1,4 @@
-Django==5.0.6
+Django==4.2.13
 speech_recognition==3.10.4
 deepmultilingualpunctuation==1.0.1
 pydub==0.25.1
